@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cookbook);
         OpenCVNativeLoader openCVNativeLoader = new OpenCVNativeLoader();
         openCVNativeLoader.init();
-        ByteBuffer buffer = ByteBuffer.allocate(bitmap.getByteCount());
+        ByteBuffer buffer = ByteBuffer.allocateDirect(bitmap.getByteCount());
         bitmap.copyPixelsToBuffer(buffer);
         Mat mat = new Mat(bitmap.getHeight(), bitmap.getWidth(), CvType.CV_8UC4, buffer);
         Log.d("OpenCV", "mat channels: " + mat.channels() + " cols: " + mat.cols() + " rows: " + mat.rows());
